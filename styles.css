@@ -477,3 +477,11 @@ footer nav a:hover::after{transform:scaleX(1)}
   .reveal-stagger > *{opacity:1 !important; transform:none !important; transition:none !important}
   .section h2 .under, .section h3 .under{transition:none; transform:none}
 }
+
+/* 6-card responsive grid */
+.grid-6{
+  display:grid; gap:24px;
+  grid-template-columns: 1fr;
+}
+@media (min-width:700px){ .grid-6{ grid-template-columns: repeat(2, 1fr); } }
+@media (min-width:1024px){ .grid-6{ grid-template-columns: repeat(3, 1fr); } }
