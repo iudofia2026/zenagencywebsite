@@ -215,6 +215,7 @@ p{margin:0 0 1.1rem; color:var(--ink-dim); max-width:60ch}
   .hwrap-plain{ opacity:1 !important; transform:none !important; transition:none !important; }
   .reels-stagger .vwrap-plain,
   .reels-stagger .hwrap-plain{ margin-top:0 !important; }
+  .showcase-grid .tile{ transform:none !important; }
 }
 
 /* Optional: desktop show controls only on hover, keep visible on touch */
@@ -457,6 +458,47 @@ footer nav a:hover::after{transform:scaleX(1)}
   color:var(--ink-dim);
   margin:4px 0 0;
 }
+
+/* Showcase 2×2 mosaic */
+.showcase-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:32px;
+}
+
+.showcase-grid .tile{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  --stagger-base:0px;
+  transform:translateY(calc(var(--stagger-base) + var(--v-offset,0px)));
+}
+
+.showcase-grid .tile video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  border-radius:inherit;
+}
+
+/* Aspect ratios */
+.showcase-grid .tile-v{aspect-ratio:9/16;}
+.showcase-grid .tile-h{aspect-ratio:16/9;}
+
+/* Subtle vertical stagger */
+.showcase-grid .tile:nth-child(1){--stagger-base:8px;}
+.showcase-grid .tile:nth-child(2){--stagger-base:-8px;}
+.showcase-grid .tile:nth-child(3){--stagger-base:12px;}
+.showcase-grid .tile:nth-child(4){--stagger-base:-12px;}
+
+@media (max-width:900px){
+  .showcase-grid{grid-template-columns:1fr; gap:24px;}
+  .showcase-grid .tile{transform:none;}
+}
+
+/* Remove captions defensively */
+.showcase-grid .v-caption{display:none !important;}
 
 .reels-grid.compact > *:nth-child(odd){ --v-offset:10px; }
 .reels-grid.compact > *:nth-child(3n){ --v-offset:22px; }

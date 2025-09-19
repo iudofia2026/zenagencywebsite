@@ -74,31 +74,22 @@
     <p class="kicker">Showcase</p>
 
     <!-- Compact, staggered grid -->
-    <div class="reels-grid compact reveal-stagger" id="reelsGrid" aria-live="polite">
-      <figure class="vwrap-plain">
-        <div class="reel-frame">
-          <video class="reel v9x16" controls muted playsinline loop preload="none" data-src="assets/videos/%5BV2_INT%202%5D%20OLD%20MAN%20STREET%20INTERVIEW.mp4"></video>
-        </div>
-        <figcaption class="v-caption">Old Man Street Interview</figcaption>
-      </figure>
-      <figure class="vwrap-plain">
-        <div class="reel-frame">
-          <video class="reel v9x16" controls muted playsinline loop preload="none" data-src="assets/videos/Interview%203.mp4"></video>
-        </div>
-        <figcaption class="v-caption">Interview 3</figcaption>
-      </figure>
-      <figure class="vwrap-plain">
-        <div class="reel-frame">
-          <video class="reel v9x16" controls muted playsinline loop preload="none" data-src="assets/videos/Video%201%20-%20Philadelphia%20Vlog_rF.mp4"></video>
-        </div>
-        <figcaption class="v-caption">Philadelphia Vlog</figcaption>
-      </figure>
-      <figure class="vwrap-longform span-2">
-        <div class="reel-frame">
-          <video class="reel h16x9" controls muted playsinline loop preload="none" data-src="assets/videos/INTRO%20PODCAST.mp4"></video>
-        </div>
-        <figcaption class="v-caption">Podcast Intro</figcaption>
-      </figure>
+    <div class="showcase-grid reels-stagger">
+      <!-- Row 1 -->
+      <div class="tile tile-v reveal reveal-stagger">
+        <video class="reel" data-src="assets/videos/%5BV2_INT%202%5D%20OLD%20MAN%20STREET%20INTERVIEW.mp4" controls muted playsinline loop preload="none"></video>
+      </div>
+      <div class="tile tile-h reveal reveal-stagger">
+        <video class="reel" data-src="assets/videos/Video%201%20-%20Philadelphia%20Vlog_rF.mp4" controls muted playsinline loop preload="none"></video>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="tile tile-h reveal reveal-stagger">
+        <video class="reel" data-src="assets/videos/INTRO%20PODCAST.mp4" controls muted playsinline loop preload="none"></video>
+      </div>
+      <div class="tile tile-v reveal reveal-stagger">
+        <video class="reel" data-src="assets/videos/Interview%203.mp4" controls muted playsinline loop preload="none"></video>
+      </div>
     </div>
   </div>
 </section>
