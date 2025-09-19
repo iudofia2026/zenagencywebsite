@@ -25,11 +25,11 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <h1>Your stories, cut to convert.</h1>
+          <h1><span class="reveal-words">Your stories, cut to convert.</span></h1>
           <p>Small, fast, and precise—edits that drive watch time and retention.</p>
           <div class="hero-cta">
-            <a href="#contact" class="btn">Start a Project</a>
-            <a href="#reels" class="btn btn-ghost">See Work</a>
+            <a href="#contact" class="btn">Contact the Agency</a>
+            <a href="#reels" class="btn btn-ghost">See Showcase</a>
           </div>
         </div>
       </div>
@@ -148,15 +148,23 @@
 
     <section id="contact" class="section reveal">
       <div class="container">
-        <h2>Contact the Agency</h2>
-        <p>Reach out directly: <a class="contact-link" href="mailto:isaiah.udofia@yale.edu">isaiah.udofia@yale.edu</a></p>
+        <div class="contact-card">
+          <h2>Contact the Agency</h2>
+          <p class="contact-lead">Reach out directly and we’ll reply same day.</p>
+          <div class="email-row">
+            <a class="email-link" href="mailto:isiah.udofia@yale.edu">isiah.udofia@yale.edu</a>
+            <button class="copy-email" type="button" aria-label="Copy email">Copy</button>
+          </div>
+          <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+          <p class="micro">Tip: Include links to footage or your channel so we can scope quickly.</p>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="reveal">
     <div class="container footer-minimal">
-      <p>© 2025 Zen Agency. All rights reserved.</p>
+      <p>© <span id="year"></span> Zen Agency. All rights reserved.</p>
       <nav>
         <a href="#reels">Work</a>
         <a href="#services">Services</a>

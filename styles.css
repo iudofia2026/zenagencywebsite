@@ -25,7 +25,7 @@ p{margin:0 0 1.1rem; color:var(--ink-dim); max-width:60ch}
 
 .site-nav a{font-weight:500; letter-spacing:-0.01em}
 
-.reveal{opacity:0; transform:translateY(18px); transition:opacity .5s ease, transform .5s ease}
+.reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease}
 .reveal.is-visible{opacity:1; transform:none}
 
 .container{max-width:1200px; margin-inline:auto; padding:0 20px}
@@ -43,10 +43,49 @@ p{margin:0 0 1.1rem; color:var(--ink-dim); max-width:60ch}
 .nav-toggle{display:none; background:#151515; border:1px solid var(--line); color:var(--ink); border-radius:10px; padding:.4rem .6rem}
 
 /* Hero */
-.hero{padding:72px 0 28px}
+.hero{
+  padding:72px 0 28px;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:-20% -10% auto -10%;
+  height:60%;
+  background:
+    radial-gradient(800px 400px at 20% 0%, rgba(255,255,255,.06), transparent 60%),
+    radial-gradient(600px 300px at 80% -10%, rgba(255,255,255,.04), transparent 60%);
+  transform: translate3d(0,0,0);
+  z-index:-1;
+  opacity:.9;
+  pointer-events:none;
+  animation: heroGlow 12s ease-in-out infinite alternate;
+}
 .hero h1{font-size: clamp(28px, 6vw, 52px); line-height:1.08; margin:0 0 .5rem}
 .hero p{color:var(--ink-dim); margin:0 0 1rem}
 .hero-cta{display:flex; gap:12px; flex-wrap:wrap}
+
+.reveal-words{display:inline-block}
+.reveal-words .w{
+  display:inline-block; opacity:0; transform:translateY(12px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.reveal-words .w.on{opacity:1; transform:none}
+
+.btn, .btn-ghost{transform:translateY(0); transition:transform .2s ease}
+@media (hover:hover){
+  .btn:hover, .btn-ghost:hover{transform:translateY(-1px)}
+}
+
+@keyframes heroGlow{
+  from{ transform: translateY(0px); }
+  to{ transform: translateY(12px); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero::before{ animation:none; }
+}
 
 /* Stats */
 .stat-band{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#0f0f0f}
@@ -161,13 +200,46 @@ p{margin:0 0 1.1rem; color:var(--ink-dim); max-width:60ch}
   border:1px solid var(--line); border-radius:12px; padding:.7rem 1rem;
 }
 
-#contact .contact-link{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:.65rem 1.2rem; border:1px solid rgba(255,255,255,.25);
-  border-radius:12px; color:var(--ink); font-weight:500;
-  transition:background-color .3s ease, color .3s ease, border-color .3s ease;
+/* Contact */
+.contact-card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  padding:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
-#contact .contact-link:hover{background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.45); color:var(--ink)}
+.contact-lead{color:var(--ink-dim); margin:.25rem 0 1rem}
+.email-row{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin-bottom:.4rem;
+}
+.email-link{
+  position:relative; display:inline-block; padding:.6rem .9rem;
+  border:1px solid var(--line); border-radius:12px; background:#141414;
+  font-weight:600;
+}
+.email-link::after{
+  content:""; position:absolute; left:12px; right:12px; bottom:6px; height:1px;
+  background: currentColor; opacity:.15; transform: scaleX(.2);
+  transition: transform .25s ease, opacity .25s ease;
+}
+@media (hover:hover){
+  .email-link:hover::after{ transform: scaleX(1); opacity:.35; }
+}
+.copy-email{
+  padding:.6rem .9rem; border:1px solid var(--line); border-radius:12px;
+  background:transparent; color:var(--ink);
+  transition:background-color .2s ease;
+}
+.copy-email:hover{background:#101010}
+.toast{
+  position:relative; min-height:1.2rem; color:var(--ink-dim);
+  font-size:.92rem; margin:.25rem 0 .2rem;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .25s ease, transform .25s ease;
+}
+.toast.show{opacity:1; transform:none}
+.micro{color:var(--ink-dim)}
 
 footer{border-top:1px solid var(--line); padding:32px 0; background:#0f0f0f}
 .footer-minimal{display:flex; flex-direction:column; gap:16px}

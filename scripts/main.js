@@ -34,6 +34,38 @@ const revealObserver = new IntersectionObserver((entries)=>{
 },{ threshold: .15 });
 revealTargets.forEach(el=>revealObserver.observe(el));
 
+/* Hero word reveal */
+(function(){
+  const container = document.querySelector('.reveal-words');
+  if(!container) return;
+  const text = container.textContent.trim();
+  if(!text) return;
+  const words = text.split(' ');
+  container.textContent = '';
+  words.forEach((wd, i)=>{
+    const span = document.createElement('span');
+    span.className = 'w';
+    span.textContent = i < words.length - 1 ? `${wd} ` : wd;
+    container.appendChild(span);
+  });
+  const parts = container.querySelectorAll('.w');
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    parts.forEach(p=>p.classList.add('on'));
+    return;
+  }
+  const start = performance.now();
+  const durEach = 55;
+  function tick(t){
+    const elapsed = t - start;
+    const idx = Math.floor(elapsed / durEach);
+    for(let i=0; i<=idx && i<parts.length; i++){
+      parts[i].classList.add('on');
+    }
+    if(idx < parts.length) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
 /* Random vertical offsets for showcase grid */
 const reelWraps = document.querySelectorAll('#reels .reels-stagger > .vwrap-plain, #reels .reels-stagger > .hwrap-plain');
 if(reelWraps.length){
@@ -73,6 +105,26 @@ if(lazyVideos.length){
   },{ rootMargin:'150px 0px', threshold:0 });
   lazyVideos.forEach(vid=>lazyObserver.observe(vid));
 }
+
+/* Contact copy-to-clipboard */
+(function(){
+  const btn = document.querySelector('.copy-email');
+  const link = document.querySelector('.email-link');
+  const toast = document.querySelector('.toast');
+  if(!btn || !link || !toast) return;
+  const email = link.textContent.trim();
+  btn.addEventListener('click', async ()=>{
+    try{
+      await navigator.clipboard.writeText(email);
+      toast.textContent = 'Email copied to clipboard';
+    }catch(_){
+      toast.textContent = 'Copy failed — long-press to copy';
+    }
+    toast.classList.add('show');
+    clearTimeout(btn._toastTimeout);
+    btn._toastTimeout = setTimeout(()=>toast.classList.remove('show'), 1600);
+  });
+})();
 
 /* Autoplay/pause reels when in view */
 const videos = document.querySelectorAll('video.reel');
