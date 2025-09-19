@@ -55,62 +55,66 @@ img,video{display:block; max-width:100%; height:auto}
 @media (min-width:1024px){.grid-3{grid-template-columns:repeat(3,1fr)}}
 .grid-span-3{grid-column:1/-1}
 
-/* Reels grid: responsive 1→2→3 columns with stagger-on-reveal */
-.reels-grid{
+
+/* Minimal 3-across staggered grid (no borders/titles) */
+.reels-stagger{
   display:grid; gap:16px;
   grid-template-columns: 1fr;
 }
 @media (min-width:700px){
-  .reels-grid{ grid-template-columns: repeat(2, 1fr); }
+  .reels-stagger{ grid-template-columns: repeat(2,1fr); }
 }
 @media (min-width:1024px){
-  .reels-grid{ grid-template-columns: repeat(3, 1fr); }
+  .reels-stagger{ grid-template-columns: repeat(3,1fr); }
 }
 
-/* 9:16 card visuals */
-.vcard{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:12px;
-  will-change: transform, box-shadow, opacity;
-  transform: translateY(14px);
-  opacity: 0;
+/* Clean video wrapper — no card/border, just rounded video */
+.vwrap-plain{
+  border-radius:16px; overflow:hidden; background:#000;
+  aspect-ratio:9/16;
+  /* reveal base state */
+  opacity:0; transform: translateY(14px);
 }
-.vcard .item-title{ margin:.55rem 0 0; }
+.v9x16{ width:100%; height:100%; object-fit:cover; display:block; }
 
-/* 9:16 media box */
-.vwrap{
-  border-radius:12px; overflow:hidden;
-  border:1px solid var(--line);
-  background:#000; aspect-ratio:9/16;
+/* Vertical stagger offsets to create a masonry-like feel */
+@media (min-width:1024px){
+  .reels-stagger .vwrap-plain:nth-child(3n+1){ margin-top: 0; }
+  .reels-stagger .vwrap-plain:nth-child(3n+2){ margin-top: 40px; }
+  .reels-stagger .vwrap-plain:nth-child(3n+3){ margin-top: 80px; }
 }
-.v9x16{ width:100%; height:100%; object-fit:cover; }
+/* On tablets, do a lighter stagger */
+@media (min-width:700px) and (max-width:1023.98px){
+  .reels-stagger .vwrap-plain:nth-child(2n+1){ margin-top: 0; }
+  .reels-stagger .vwrap-plain:nth-child(2n){ margin-top: 40px; }
+}
 
-/* Staggered reveal timing when parent .reveal-stagger becomes visible */
-.reveal-stagger.is-visible > .vcard{
+/* Reveal animation (fade + rise) triggered when parent reveal-stagger becomes visible */
+.reveal-stagger.is-visible > .vwrap-plain{
   opacity:1; transform:none;
   transition: opacity .6s ease, transform .6s ease;
 }
-.reveal-stagger.is-visible > .vcard:nth-child(1){ transition-delay: 0ms; }
-.reveal-stagger.is-visible > .vcard:nth-child(2){ transition-delay: 80ms; }
-.reveal-stagger.is-visible > .vcard:nth-child(3){ transition-delay: 160ms; }
-.reveal-stagger.is-visible > .vcard:nth-child(4){ transition-delay: 240ms; }
-.reveal-stagger.is-visible > .vcard:nth-child(5){ transition-delay: 320ms; }
-.reveal-stagger.is-visible > .vcard:nth-child(6){ transition-delay: 400ms; }
-.reveal-stagger.is-visible > .vcard:nth-child(7){ transition-delay: 480ms; }
-.reveal-stagger.is-visible > .vcard:nth-child(8){ transition-delay: 560ms; }
-.reveal-stagger.is-visible > .vcard:nth-child(9){ transition-delay: 640ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(1){ transition-delay: 0ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(2){ transition-delay: 80ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(3){ transition-delay: 160ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(4){ transition-delay: 240ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(5){ transition-delay: 320ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(6){ transition-delay: 400ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(7){ transition-delay: 480ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(8){ transition-delay: 560ms; }
+.reveal-stagger.is-visible > .vwrap-plain:nth-child(9){ transition-delay: 640ms; }
 
 @media (prefers-reduced-motion: reduce){
-  .vcard{ opacity:1 !important; transform:none !important; transition:none !important; }
+  .vwrap-plain{ opacity:1 !important; transform:none !important; transition:none !important; }
+  .reels-stagger .vwrap-plain{ margin-top:0 !important; }
 }
 
-/* Optional: show controls on hover (desktop only), keep visible on touch */
+/* Optional: desktop show controls only on hover, keep visible on touch */
 @media (hover:hover){
-  .vwrap .reel::-webkit-media-controls{ opacity:0; transition:opacity .2s ease; }
-  .vwrap:hover .reel::-webkit-media-controls{ opacity:1; }
+  .vwrap-plain .reel::-webkit-media-controls{ opacity:0; transition:opacity .2s ease; }
+  .vwrap-plain:hover .reel::-webkit-media-controls{ opacity:1; }
 }
+
 
 .card{
   background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:14px;
