@@ -434,16 +434,29 @@ footer nav a:hover::after{transform:scaleX(1)}
 }
 
 .reels-grid.compact > *{
-  border-radius:16px; overflow:hidden; background:#000;
   margin-top:var(--v-offset,0px);
+  display:flex; flex-direction:column; gap:6px;
 }
-.vwrap-plain{position:relative; aspect-ratio:9/16;}
-.vwrap-longform{position:relative; aspect-ratio:16/9;}
+.vwrap-plain, .vwrap-longform{margin:0;}
 .hwrap-plain{position:relative; aspect-ratio:16/9;}
 .hwrap-plain.span-2, .vwrap-longform.span-2{grid-column:span 2;}
 @media (max-width:739px){.hwrap-plain.span-2, .vwrap-longform.span-2{grid-column:span 2;}}
 
-.reels-grid.compact video{width:100%; height:100%; object-fit:cover; display:block}
+.reel-frame{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  background:#000;
+}
+.vwrap-plain .reel-frame{aspect-ratio:9/16;}
+.vwrap-longform .reel-frame{aspect-ratio:16/9;}
+.reel-frame video{width:100%; height:100%; object-fit:cover; display:block}
+
+.v-caption{
+  font:500 12px/1.6 "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--ink-dim);
+  margin:4px 0 0;
+}
 
 .reels-grid.compact > *:nth-child(odd){ --v-offset:10px; }
 .reels-grid.compact > *:nth-child(3n){ --v-offset:22px; }
