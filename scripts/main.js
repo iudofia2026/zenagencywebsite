@@ -22,6 +22,18 @@ if(toggle){
   });
 }
 
+/* Reveal animations */
+const revealTargets = document.querySelectorAll('.reveal, .reveal-stagger');
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{ threshold: .15 });
+revealTargets.forEach(el=>revealObserver.observe(el));
+
 /* Autoplay/pause reels when in view */
 const videos = document.querySelectorAll('video.reel');
 const io = new IntersectionObserver((entries)=>{

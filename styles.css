@@ -54,6 +54,64 @@ img,video{display:block; max-width:100%; height:auto}
 @media (min-width:700px){.grid-3{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:1024px){.grid-3{grid-template-columns:repeat(3,1fr)}}
 .grid-span-3{grid-column:1/-1}
+
+/* Reels grid: responsive 1→2→3 columns with stagger-on-reveal */
+.reels-grid{
+  display:grid; gap:16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width:700px){
+  .reels-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width:1024px){
+  .reels-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* 9:16 card visuals */
+.vcard{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px;
+  will-change: transform, box-shadow, opacity;
+  transform: translateY(14px);
+  opacity: 0;
+}
+.vcard .item-title{ margin:.55rem 0 0; }
+
+/* 9:16 media box */
+.vwrap{
+  border-radius:12px; overflow:hidden;
+  border:1px solid var(--line);
+  background:#000; aspect-ratio:9/16;
+}
+.v9x16{ width:100%; height:100%; object-fit:cover; }
+
+/* Staggered reveal timing when parent .reveal-stagger becomes visible */
+.reveal-stagger.is-visible > .vcard{
+  opacity:1; transform:none;
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal-stagger.is-visible > .vcard:nth-child(1){ transition-delay: 0ms; }
+.reveal-stagger.is-visible > .vcard:nth-child(2){ transition-delay: 80ms; }
+.reveal-stagger.is-visible > .vcard:nth-child(3){ transition-delay: 160ms; }
+.reveal-stagger.is-visible > .vcard:nth-child(4){ transition-delay: 240ms; }
+.reveal-stagger.is-visible > .vcard:nth-child(5){ transition-delay: 320ms; }
+.reveal-stagger.is-visible > .vcard:nth-child(6){ transition-delay: 400ms; }
+.reveal-stagger.is-visible > .vcard:nth-child(7){ transition-delay: 480ms; }
+.reveal-stagger.is-visible > .vcard:nth-child(8){ transition-delay: 560ms; }
+.reveal-stagger.is-visible > .vcard:nth-child(9){ transition-delay: 640ms; }
+
+@media (prefers-reduced-motion: reduce){
+  .vcard{ opacity:1 !important; transform:none !important; transition:none !important; }
+}
+
+/* Optional: show controls on hover (desktop only), keep visible on touch */
+@media (hover:hover){
+  .vwrap .reel::-webkit-media-controls{ opacity:0; transition:opacity .2s ease; }
+  .vwrap:hover .reel::-webkit-media-controls{ opacity:1; }
+}
+
 .card{
   background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:14px;
   transition:transform .2s ease, box-shadow .2s ease;
