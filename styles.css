@@ -208,59 +208,6 @@ p{margin:0 0 1.1rem; color:var(--ink-dim); max-width:60ch}
 
 
 /* Minimal 3-across staggered grid (no borders/titles) */
-.reels-stagger{
-  display:grid; gap:16px;
-  grid-template-columns: 1fr;
-}
-@media (min-width:700px){
-  .reels-stagger{ grid-template-columns: repeat(2,1fr); }
-}
-@media (min-width:1024px){
-  .reels-stagger{ grid-template-columns: repeat(3,1fr); }
-}
-
-/* Clean video wrapper — no card/border, just rounded video */
-.vwrap-plain{
-  border-radius:16px; overflow:hidden; background:#000;
-  aspect-ratio:9/16;
-  opacity:0; transform: translateY(14px);
-  margin-top: var(--v-offset, 0px);
-}
-.v9x16{ width:100%; height:100%; object-fit:cover; display:block; }
-
-/* Longform 16:9 item — clean, rounded, no border */
-.hwrap-plain{
-  border-radius:16px; overflow:hidden; background:#000;
-  aspect-ratio:16/9;
-  opacity:0; transform: translateY(14px);
-  margin-top: var(--v-offset, 0px);
-}
-.h16x9{ width:100%; height:100%; object-fit:cover; display:block; }
-
-/* Span 2 columns on tablet/desktop to weave into the grid */
-@media (min-width:700px){
-  .span-2{ grid-column: span 2; }
-}
-
-/* Reveal animation (fade + rise) triggered when parent reveal-stagger becomes visible */
-.reveal-stagger.is-visible > .vwrap-plain{
-  opacity:1; transform:none;
-  transition: opacity .6s ease, transform .6s ease;
-}
-.reveal-stagger.is-visible > .hwrap-plain{
-  opacity:1; transform:none;
-  transition: opacity .55s ease, transform .55s ease;
-}
-.reveal-stagger.is-visible > *:nth-child(1){ transition-delay: 0ms; }
-.reveal-stagger.is-visible > *:nth-child(2){ transition-delay: 80ms; }
-.reveal-stagger.is-visible > *:nth-child(3){ transition-delay: 160ms; }
-.reveal-stagger.is-visible > *:nth-child(4){ transition-delay: 240ms; }
-.reveal-stagger.is-visible > *:nth-child(5){ transition-delay: 320ms; }
-.reveal-stagger.is-visible > *:nth-child(6){ transition-delay: 400ms; }
-.reveal-stagger.is-visible > *:nth-child(7){ transition-delay: 480ms; }
-.reveal-stagger.is-visible > *:nth-child(8){ transition-delay: 560ms; }
-.reveal-stagger.is-visible > *:nth-child(9){ transition-delay: 640ms; }
-.reveal-stagger.is-visible > *:nth-child(10){ transition-delay: 720ms; }
 
 @media (prefers-reduced-motion: reduce){
   .reveal,
@@ -372,23 +319,6 @@ p{margin:0 0 1.1rem; color:var(--ink-dim); max-width:60ch}
 .trust-quotes{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
 .qchip{border:1px solid var(--line); border-radius:999px; padding:.25rem .6rem; color:var(--ink-dim); background:#121212}
 
-/* Section heading accents */
-.section h2, .why h3{
-  position:relative;
-  padding-bottom:.35rem;
-}
-.section h2 .under, .why h3 .under{
-  position:absolute; left:0; bottom:0; height:2px; width:64px;
-  background: linear-gradient(90deg, #fff, rgba(255,255,255,.2));
-  border-radius:2px; transform-origin:left;
-  transform:scaleX(.2); opacity:.7;
-  transition:transform .6s ease;
-}
-.reveal.is-visible .under{transform:scaleX(1)}
-@media (prefers-reduced-motion: reduce){
-  .section h2 .under, .why h3 .under{transition:none; transform:none}
-}
-
 /* Why band texture */
 .why{position:relative; overflow:hidden; background:#0e0e0e; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 .why::before,
@@ -486,21 +416,64 @@ footer nav a:hover::after{transform:scaleX(1)}
 
 @media (prefers-reduced-motion: reduce){
   .services-grid .s-card{transition:none}
-  @media (hover:hover){
-    .services-grid .s-card:hover{transform:none; box-shadow:none}
-    .services-grid .s-card::after{transition:none}
-  }
-  .reveal-stagger.services-grid > *{opacity:1 !important; transform:none !important; transition:none !important}
+  .services-grid .s-card:hover{transform:none; box-shadow:none}
+  .services-grid .s-card::after{transition:none}
   .collab-track{animation:none !important}
 }
 
-.reveal-stagger.services-grid > *{opacity:0; transform:translateY(14px)}
-.reveal-stagger.services-grid.is-visible > *{
-  opacity:1; transform:none; transition: opacity .5s ease, transform .5s ease;
+.reels-grid.compact{
+  --gap:14px;
+  display:grid; gap:var(--gap);
+  grid-template-columns:repeat(2,minmax(0,1fr));
 }
-.reveal-stagger.services-grid.is-visible > *:nth-child(1){ transition-delay:0ms }
-.reveal-stagger.services-grid.is-visible > *:nth-child(2){ transition-delay:80ms }
-.reveal-stagger.services-grid.is-visible > *:nth-child(3){ transition-delay:160ms }
-.reveal-stagger.services-grid.is-visible > *:nth-child(4){ transition-delay:240ms }
-.reveal-stagger.services-grid.is-visible > *:nth-child(5){ transition-delay:320ms }
-.reveal-stagger.services-grid.is-visible > *:nth-child(6){ transition-delay:400ms }
+@media (min-width:740px){
+  .reels-grid.compact{grid-template-columns:repeat(4,minmax(0,1fr));}
+}
+@media (min-width:1120px){
+  .reels-grid.compact{grid-template-columns:repeat(5,minmax(0,1fr));}
+}
+
+.reels-grid.compact > *{
+  border-radius:16px; overflow:hidden; background:#000;
+  margin-top:var(--v-offset,0px);
+}
+.vwrap-plain{position:relative; aspect-ratio:9/16;}
+.hwrap-plain{position:relative; aspect-ratio:16/9;}
+.hwrap-plain.span-2{grid-column:span 2;}
+@media (max-width:739px){.hwrap-plain.span-2{grid-column:span 2;}}
+
+.reels-grid.compact video{width:100%; height:100%; object-fit:cover; display:block}
+
+.reels-grid.compact > *:nth-child(odd){ --v-offset:10px; }
+.reels-grid.compact > *:nth-child(3n){ --v-offset:22px; }
+.reels-grid.compact > *:nth-child(5n){ --v-offset:36px; }
+
+.reveal-stagger{opacity:1}
+.reveal-stagger > *{opacity:0; transform:translateY(14px);}
+.reveal-stagger.is-visible > *{
+  opacity:1; transform:none; transition:opacity .45s ease, transform .45s ease;
+}
+.reveal-stagger.is-visible > *:nth-child(1){transition-delay:0ms}
+.reveal-stagger.is-visible > *:nth-child(2){transition-delay:50ms}
+.reveal-stagger.is-visible > *:nth-child(3){transition-delay:100ms}
+.reveal-stagger.is-visible > *:nth-child(4){transition-delay:150ms}
+.reveal-stagger.is-visible > *:nth-child(5){transition-delay:200ms}
+.reveal-stagger.is-visible > *:nth-child(6){transition-delay:250ms}
+.reveal-stagger.is-visible > *:nth-child(7){transition-delay:300ms}
+.reveal-stagger.is-visible > *:nth-child(8){transition-delay:350ms}
+.reveal-stagger.is-visible > *:nth-child(9){transition-delay:400ms}
+.reveal-stagger.is-visible > *:nth-child(10){transition-delay:450ms}
+
+.section h2, .section h3{position:relative; padding-bottom:.35rem}
+.section h2 .under, .section h3 .under{
+  position:absolute; left:0; bottom:0; height:2px; width:64px;
+  background:linear-gradient(90deg, #fff, rgba(255,255,255,.2));
+  border-radius:2px; transform-origin:left;
+  transform:scaleX(.2); opacity:.7; transition:transform .6s ease;
+}
+.reveal.is-visible .under{transform:scaleX(1)}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal-stagger > *{opacity:1 !important; transform:none !important; transition:none !important}
+  .section h2 .under, .section h3 .under{transition:none; transform:none}
+}

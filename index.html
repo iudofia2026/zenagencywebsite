@@ -63,60 +63,35 @@
           <div class="stat-label">Clients served</div>
         </div>
         <div class="stat">
-          <div class="stat-value" data-target="96">96</div>
+          <div class="stat-value" data-target="70" data-plus="true">70+</div>
           <div class="stat-label">Retention rate (%)</div>
         </div>
       </div>
     </section>
 
     <section id="reels" class="section">
-      <div class="container">
-        <p class="kicker">Showcase</p>
+  <div class="container">
+    <p class="kicker">Showcase</p>
 
-        <!-- Drop MP4s into assets/videos/vert-1.mp4 … vert-9.mp4
-             Posters optional: assets/posters/vert-*.jpg -->
-
-        <div class="reels-stagger reveal-stagger" aria-live="polite">
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-1.jpg" data-src="assets/videos/vert-1.mp4"></video>
-          </div>
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-2.jpg" data-src="assets/videos/vert-2.mp4"></video>
-          </div>
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-3.jpg" data-src="assets/videos/vert-3.mp4"></video>
-          </div>
-          <div class="hwrap-plain span-2">
-            <video class="reel h16x9" controls muted playsinline loop preload="none"
-              poster="assets/posters/youtube-1.jpg"
-              data-src="assets/videos/youtube-1.mp4"></video>
-          </div>
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-4.jpg" data-src="assets/videos/vert-4.mp4"></video>
-          </div>
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-5.jpg" data-src="assets/videos/vert-5.mp4"></video>
-          </div>
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-6.jpg" data-src="assets/videos/vert-6.mp4"></video>
-          </div>
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-7.jpg" data-src="assets/videos/vert-7.mp4"></video>
-          </div>
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-8.jpg" data-src="assets/videos/vert-8.mp4"></video>
-          </div>
-          <div class="vwrap-plain">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/vert-9.jpg" data-src="assets/videos/vert-9.mp4"></video>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Compact, staggered grid -->
+    <div class="reels-grid compact reveal-stagger" id="reelsGrid" aria-live="polite">
+      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-1.jpg" data-src="assets/videos/reel-1.mp4"></video></div>
+      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-2.jpg" data-src="assets/videos/reel-2.mp4"></video></div>
+      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-3.jpg" data-src="assets/videos/reel-3.mp4"></video></div>
+      <div class="hwrap-plain span-2"><video class="reel h16x9" controls muted playsinline loop preload="none" poster="assets/posters/youtube-1.jpg" data-src="assets/videos/youtube-1.mp4"></video></div>
+      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-4.jpg" data-src="assets/videos/reel-4.mp4"></video></div>
+      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-5.jpg" data-src="assets/videos/reel-5.mp4"></video></div>
+      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-6.jpg" data-src="assets/videos/reel-6.mp4"></video></div>
+      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-7.jpg" data-src="assets/videos/reel-7.mp4"></video></div>
+      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-8.jpg" data-src="assets/videos/reel-8.mp4"></video></div>
+    </div>
+  </div>
+</section>
 
     <section id="services" class="section">
       <div class="container">
         <p class="kicker">Capabilities</p>
-        <h2>What We Do</h2>
+        <h2>What We Do <span class="under"></span></h2>
         <div class="grid grid-3 reveal-stagger services-grid">
           <div class="card s-card">
             <div class="s-icon" aria-hidden="true">✂️</div>

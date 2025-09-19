@@ -38,7 +38,7 @@ if(toggle){
 })();
 
 /* Random vertical offsets for showcase grid */
-const reelWraps = document.querySelectorAll('#reels .reels-stagger > .vwrap-plain, #reels .reels-stagger > .hwrap-plain');
+const reelWraps = document.querySelectorAll('#reels .reels-grid > .vwrap-plain, #reels .reels-grid > .hwrap-plain');
 if(reelWraps.length){
   const tabletMq = window.matchMedia('(min-width:700px)');
   const desktopMq = window.matchMedia('(min-width:1024px)');
