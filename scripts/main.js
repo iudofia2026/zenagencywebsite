@@ -188,37 +188,29 @@ if(yearEl){
   yearEl.textContent = new Date().getFullYear();
 }
 
-const statEls = document.querySelectorAll('#stats .stat-value');
-const animateStats = ()=>{
-  statEls.forEach(el=>{
-    const target = parseInt(el.dataset.target || el.textContent, 10);
-    if(!Number.isFinite(target)) return;
-    const isPlus = el.textContent.trim().endsWith('+');
-    const start = 0;
-    const dur = 900;
-    const begin = performance.now();
-    function step(t){
-      const p = Math.min(1, (t - begin) / dur);
-      const val = Math.floor(start + (target - start) * p);
-      el.textContent = isPlus ? `${val}+` : `${val}`;
-      if(p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  });
-};
-if(statEls.length){
-  const statsSection = document.getElementById('stats');
-  if(statsSection){
-    const statsObserver = new IntersectionObserver((entries, observer)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          animateStats();
-          observer.unobserve(entry.target);
+(function(){
+  const band = document.getElementById('stats');
+  if(!band) return;
+  const values = band.querySelectorAll('.stat-value');
+  const once = new IntersectionObserver((entries)=>{
+    if(entries.some(e=>e.isIntersecting)){
+      values.forEach(el=>{
+        const target = parseFloat(el.dataset.target || el.textContent);
+        if(!Number.isFinite(target)) return;
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const plus = el.dataset.plus === 'true' || el.textContent.includes('+');
+        const start = 0; const dur = 900; const t0 = performance.now();
+        function tick(t){
+          const p = Math.min(1, (t - t0) / dur);
+          const val = start + (target - start) * p;
+          const formatted = val.toFixed(decimals).replace(/\.0+$/,'');
+          el.textContent = plus ? `${formatted}+` : formatted;
+          if(p < 1) requestAnimationFrame(tick);
         }
+        requestAnimationFrame(tick);
       });
-    },{threshold:0.3});
-    statsObserver.observe(statsSection);
-  } else {
-    animateStats();
-  }
-}
+      once.disconnect();
+    }
+  },{ threshold:.3 });
+  once.observe(band);
+})();
