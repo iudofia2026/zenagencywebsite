@@ -19,23 +19,37 @@
         <a href="#reels">Showcase</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
-        <a href="#contact" class="cta">Start a Project</a>
+        <a href="#contact" class="cta">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container hero-inner">
+      <div class="container hero-grid">
         <div class="hero-copy">
-          <h1><span class="reveal-words">Your stories, cut to convert.</span></h1>
-          <p>Small, fast, and precise—edits that drive watch time and retention.</p>
-          <div class="hero-cta">
+          <h1 class="reveal">Your stories, cut to convert.</h1>
+          <p class="reveal delay-1">Small, fast, and precise—edits that drive watch time and retention.</p>
+          <div class="hero-cta reveal delay-2">
             <a href="#contact" class="btn">Contact the Agency</a>
             <a href="#reels" class="btn btn-ghost">See Showcase</a>
           </div>
         </div>
+
+        <div class="hero-montage reveal delay-3">
+          <div class="tile t1">
+            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/hero-1.jpg" data-src="assets/videos/hero-1.mp4"></video>
+          </div>
+          <div class="tile t2">
+            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/hero-2.jpg" data-src="assets/videos/hero-2.mp4"></video>
+          </div>
+          <div class="tile t3">
+            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/hero-3.jpg" data-src="assets/videos/hero-3.mp4"></video>
+          </div>
+        </div>
       </div>
+
+      <button class="scroll-cue" aria-label="Scroll to Showcase" onclick="document.getElementById('reels')?.scrollIntoView({behavior:'smooth'})">↓</button>
     </section>
 
     <section class="stat-band">
@@ -173,7 +187,7 @@
             <button class="copy-email" type="button" aria-label="Copy email">Copy</button>
           </div>
           <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-          <p class="micro">Tip: Include links to footage or your channel so we can scope quickly.</p>
+          <p class="micro">Tip: include links to footage or your channel so we can scope quickly.</p>
         </div>
       </div>
     </section>
@@ -192,5 +206,9 @@
   </footer>
 
   <script src="scripts/main.js"></script>
+
+  <button class="sticky-cta" aria-label="Contact Zen Agency" onclick="document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})">
+    Contact
+  </button>
 </body>
 </html>

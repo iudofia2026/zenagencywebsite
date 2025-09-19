@@ -23,43 +23,18 @@ if(toggle){
 }
 
 /* Reveal animations */
-const revealTargets = document.querySelectorAll('.reveal, .reveal-stagger');
-const revealObserver = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-},{ threshold: .15 });
-revealTargets.forEach(el=>revealObserver.observe(el));
-
-/* HERO WORD REVEAL (preserves spaces) */
 (function(){
-  const el = document.querySelector('.reveal-words');
-  if(!el) return;
-  const tokens = el.textContent.split(/(\s+)/);
-  el.textContent = '';
-  tokens.forEach(tok=>{
-    const span = document.createElement('span');
-    span.className = 'w';
-    span.textContent = tok;
-    el.appendChild(span);
-  });
-  const parts = el.querySelectorAll('.w');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduced){
-    parts.forEach(p=>p.classList.add('on'));
-    return;
-  }
-  const start = performance.now();
-  const step = 45;
-  function tick(t){
-    const index = Math.floor((t - start) / step);
-    parts.forEach((p, i)=>{ if(i <= index) p.classList.add('on'); });
-    if(index < parts.length) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
+  const els = document.querySelectorAll('.reveal, .reveal-stagger');
+  if(!els.length) return;
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  },{ threshold:.15 });
+  els.forEach(el=>io.observe(el));
 })();
 
 /* Random vertical offsets for showcase grid */
@@ -82,6 +57,77 @@ if(reelWraps.length){
   tabletMq.addEventListener('change', applyOffsets);
   desktopMq.addEventListener('change', applyOffsets);
 }
+
+/* Hero montage parallax */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const tiles = document.querySelectorAll('.hero-montage .tile');
+  const hero = document.querySelector('.hero');
+  if(!tiles.length || !hero) return;
+  const strength = 0.06;
+  const update = ()=>{
+    const rect = hero.getBoundingClientRect();
+    const range = rect.height + window.innerHeight;
+    const pct = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / range));
+    tiles.forEach((tile, index)=>{
+      const offset = (index + 1) * strength * (pct * 40);
+      tile.style.setProperty('--parallax', `${-offset}px`);
+    });
+  };
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+
+/* Lazy-load hero videos */
+(function(){
+  const vids = document.querySelectorAll('.hero-montage video.reel[data-src]');
+  if(!vids.length) return;
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const v = entry.target;
+        const src = v.getAttribute('data-src');
+        if(src && !v.src){
+          v.src = src;
+          v.load();
+        }
+        io.unobserve(v);
+      }
+    });
+  },{ rootMargin:'200px 0px', threshold:.01 });
+  vids.forEach(v=>io.observe(v));
+})();
+
+/* Sticky CTA */
+(function(){
+  const btn = document.querySelector('.sticky-cta');
+  if(!btn) return;
+  btn.classList.add('hide');
+  const hero = document.querySelector('.hero');
+  if(!hero) return;
+  const contact = document.getElementById('contact');
+  let shouldShow = false;
+  const showObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      shouldShow = !entry.isIntersecting;
+      btn.classList.toggle('hide', !shouldShow);
+    });
+  },{ rootMargin:'-40% 0px -40% 0px', threshold:.01 });
+  showObserver.observe(hero);
+
+  if(contact){
+    const hideObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          btn.classList.add('hide');
+        } else if(shouldShow){
+          btn.classList.remove('hide');
+        }
+      });
+    },{ rootMargin:'0px 0px -60% 0px', threshold:.01 });
+    hideObserver.observe(contact);
+  }
+})();
 
 /* Lazy-load showcase videos */
 const lazyVideos = document.querySelectorAll('#reels video.reel[data-src]');
