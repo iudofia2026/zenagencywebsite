@@ -34,6 +34,46 @@ const revealObserver = new IntersectionObserver((entries)=>{
 },{ threshold: .15 });
 revealTargets.forEach(el=>revealObserver.observe(el));
 
+/* Random vertical offsets for showcase grid */
+const reelWraps = document.querySelectorAll('#reels .reels-stagger > .vwrap-plain, #reels .reels-stagger > .hwrap-plain');
+if(reelWraps.length){
+  const tabletMq = window.matchMedia('(min-width:700px)');
+  const desktopMq = window.matchMedia('(min-width:1024px)');
+  const tabletOffsets = [0, 40];
+  const desktopOffsets = [0, 40, 80];
+  const mobileOffsets = [0];
+  const choose = (arr)=>arr[Math.floor(Math.random()*arr.length)];
+  const applyOffsets = ()=>{
+    const offsets = desktopMq.matches ? desktopOffsets : (tabletMq.matches ? tabletOffsets : mobileOffsets);
+    reelWraps.forEach(el=>{
+      const value = choose(offsets);
+      el.style.setProperty('--v-offset', `${value}px`);
+    });
+  };
+  applyOffsets();
+  tabletMq.addEventListener('change', applyOffsets);
+  desktopMq.addEventListener('change', applyOffsets);
+}
+
+/* Lazy-load showcase videos */
+const lazyVideos = document.querySelectorAll('#reels video.reel[data-src]');
+if(lazyVideos.length){
+  const lazyObserver = new IntersectionObserver((entries, observer)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const vid = entry.target;
+        const src = vid.dataset.src;
+        if(src && !vid.src){
+          vid.src = src;
+          vid.load();
+        }
+        observer.unobserve(vid);
+      }
+    });
+  },{ rootMargin:'150px 0px', threshold:0 });
+  lazyVideos.forEach(vid=>lazyObserver.observe(vid));
+}
+
 /* Autoplay/pause reels when in view */
 const videos = document.querySelectorAll('video.reel');
 const io = new IntersectionObserver((entries)=>{

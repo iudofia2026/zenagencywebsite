@@ -72,21 +72,23 @@ img,video{display:block; max-width:100%; height:auto}
 .vwrap-plain{
   border-radius:16px; overflow:hidden; background:#000;
   aspect-ratio:9/16;
-  /* reveal base state */
   opacity:0; transform: translateY(14px);
+  margin-top: var(--v-offset, 0px);
 }
 .v9x16{ width:100%; height:100%; object-fit:cover; display:block; }
 
-/* Vertical stagger offsets to create a masonry-like feel */
-@media (min-width:1024px){
-  .reels-stagger .vwrap-plain:nth-child(3n+1){ margin-top: 0; }
-  .reels-stagger .vwrap-plain:nth-child(3n+2){ margin-top: 40px; }
-  .reels-stagger .vwrap-plain:nth-child(3n+3){ margin-top: 80px; }
+/* Longform 16:9 item — clean, rounded, no border */
+.hwrap-plain{
+  border-radius:16px; overflow:hidden; background:#000;
+  aspect-ratio:16/9;
+  opacity:0; transform: translateY(14px);
+  margin-top: var(--v-offset, 0px);
 }
-/* On tablets, do a lighter stagger */
-@media (min-width:700px) and (max-width:1023.98px){
-  .reels-stagger .vwrap-plain:nth-child(2n+1){ margin-top: 0; }
-  .reels-stagger .vwrap-plain:nth-child(2n){ margin-top: 40px; }
+.h16x9{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Span 2 columns on tablet/desktop to weave into the grid */
+@media (min-width:700px){
+  .span-2{ grid-column: span 2; }
 }
 
 /* Reveal animation (fade + rise) triggered when parent reveal-stagger becomes visible */
@@ -94,25 +96,34 @@ img,video{display:block; max-width:100%; height:auto}
   opacity:1; transform:none;
   transition: opacity .6s ease, transform .6s ease;
 }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(1){ transition-delay: 0ms; }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(2){ transition-delay: 80ms; }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(3){ transition-delay: 160ms; }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(4){ transition-delay: 240ms; }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(5){ transition-delay: 320ms; }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(6){ transition-delay: 400ms; }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(7){ transition-delay: 480ms; }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(8){ transition-delay: 560ms; }
-.reveal-stagger.is-visible > .vwrap-plain:nth-child(9){ transition-delay: 640ms; }
+.reveal-stagger.is-visible > .hwrap-plain{
+  opacity:1; transform:none;
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal-stagger.is-visible > *:nth-child(1){ transition-delay: 0ms; }
+.reveal-stagger.is-visible > *:nth-child(2){ transition-delay: 80ms; }
+.reveal-stagger.is-visible > *:nth-child(3){ transition-delay: 160ms; }
+.reveal-stagger.is-visible > *:nth-child(4){ transition-delay: 240ms; }
+.reveal-stagger.is-visible > *:nth-child(5){ transition-delay: 320ms; }
+.reveal-stagger.is-visible > *:nth-child(6){ transition-delay: 400ms; }
+.reveal-stagger.is-visible > *:nth-child(7){ transition-delay: 480ms; }
+.reveal-stagger.is-visible > *:nth-child(8){ transition-delay: 560ms; }
+.reveal-stagger.is-visible > *:nth-child(9){ transition-delay: 640ms; }
+.reveal-stagger.is-visible > *:nth-child(10){ transition-delay: 720ms; }
 
 @media (prefers-reduced-motion: reduce){
-  .vwrap-plain{ opacity:1 !important; transform:none !important; transition:none !important; }
-  .reels-stagger .vwrap-plain{ margin-top:0 !important; }
+  .vwrap-plain,
+  .hwrap-plain{ opacity:1 !important; transform:none !important; transition:none !important; }
+  .reels-stagger .vwrap-plain,
+  .reels-stagger .hwrap-plain{ margin-top:0 !important; }
 }
 
 /* Optional: desktop show controls only on hover, keep visible on touch */
 @media (hover:hover){
-  .vwrap-plain .reel::-webkit-media-controls{ opacity:0; transition:opacity .2s ease; }
-  .vwrap-plain:hover .reel::-webkit-media-controls{ opacity:1; }
+  .vwrap-plain .reel::-webkit-media-controls,
+  .hwrap-plain .reel::-webkit-media-controls{ opacity:0; transition:opacity .2s ease; }
+  .vwrap-plain:hover .reel::-webkit-media-controls,
+  .hwrap-plain:hover .reel::-webkit-media-controls{ opacity:1; }
 }
 
 
