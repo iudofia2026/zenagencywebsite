@@ -89,7 +89,10 @@ const io = new IntersectionObserver((entries)=>{
 videos.forEach(v=>io.observe(v));
 
 /* Year + basic count-up (optional, light) */
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if(yearEl){
+  yearEl.textContent = new Date().getFullYear();
+}
 
 document.querySelectorAll('.stat-value').forEach(el=>{
   const target = parseInt(el.dataset.target || el.textContent, 10);
