@@ -52,10 +52,10 @@
       <button class="scroll-cue" aria-label="Scroll to Showcase" onclick="document.getElementById('reels')?.scrollIntoView({behavior:'smooth'})">↓</button>
     </section>
 
-    <section class="stat-band">
-      <div class="container stats" id="stats">
+    <section class="stat-band" id="stats">
+      <div class="container stats stats-3">
         <div class="stat">
-          <div class="stat-value" data-target="20">20+</div>
+          <div class="stat-value" data-target="20" data-plus="true">20+</div>
           <div class="stat-label">Projects delivered</div>
         </div>
         <div class="stat">
@@ -63,11 +63,7 @@
           <div class="stat-label">Clients served</div>
         </div>
         <div class="stat">
-          <div class="stat-value" data-target="0">0</div>
-          <div class="stat-label">Avg. days turnaround</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value" data-target="0">0</div>
+          <div class="stat-value" data-target="96">96</div>
           <div class="stat-label">Retention rate (%)</div>
         </div>
       </div>
@@ -173,22 +169,27 @@
 
     <section class="section why reveal">
       <div class="container">
-        <h3><span class="ico" aria-hidden="true">⚡</span> Fast edits. Human QC. Retention-first craft.<span class="under"></span></h3>
-        <p class="why-sub">We turn raw footage into watchable, shareable stories—reels, animation accents, YouTube narratives, vlogs, and podcasts.</p>
+        <h3>Edit quality you can feel. Turnarounds you can plan on.<span class="under"></span></h3>
+        <p class="why-sub">We craft watchable, shareable stories—short-form reels, animation accents, YouTube narratives, vlogs, and podcasts.</p>
+        <div class="why-pills">
+          <span class="pill">Retention-first pacing</span>
+          <span class="pill">Final human QC</span>
+          <span class="pill">Retainer-friendly workflow</span>
+        </div>
       </div>
     </section>
 
     <section id="about" class="section reveal">
       <div class="container">
-        <h2><span class="ico" aria-hidden="true">🎬</span> About <span class="under"></span></h2>
+        <h2>About <span class="under"></span></h2>
         <p>Zen Agency provides the highest quality of video editing at competitive pricing with quick turnaround.</p>
       </div>
     </section>
 
     <section id="contact" class="section reveal">
       <div class="container">
-        <div class="contact-card accent-border">
-          <h2><span class="ico" aria-hidden="true">✉️</span> Contact the Agency <span class="under"></span></h2>
+        <div class="contact-card">
+          <h2>Contact the Agency <span class="under"></span></h2>
           <p class="contact-lead">Reach out directly and we’ll reply same day.</p>
           <div class="email-row">
             <a class="email-link" href="mailto:isiah.udofia@yale.edu">isiah.udofia@yale.edu</a>

@@ -192,25 +192,26 @@ if(yearEl){
   const band = document.getElementById('stats');
   if(!band) return;
   const values = band.querySelectorAll('.stat-value');
-  const once = new IntersectionObserver((entries)=>{
+  const io = new IntersectionObserver((entries)=>{
     if(entries.some(e=>e.isIntersecting)){
       values.forEach(el=>{
         const target = parseFloat(el.dataset.target || el.textContent);
         if(!Number.isFinite(target)) return;
-        const decimals = parseInt(el.dataset.decimals || '0', 10);
         const plus = el.dataset.plus === 'true' || el.textContent.includes('+');
-        const start = 0; const dur = 900; const t0 = performance.now();
+        const start = 0;
+        const dur = 900;
+        const t0 = performance.now();
         function tick(t){
           const p = Math.min(1, (t - t0) / dur);
           const val = start + (target - start) * p;
-          const formatted = val.toFixed(decimals).replace(/\.0+$/,'');
-          el.textContent = plus ? `${formatted}+` : formatted;
+          const rounded = Math.round(val);
+          el.textContent = plus ? `${rounded}+` : `${rounded}`;
           if(p < 1) requestAnimationFrame(tick);
         }
         requestAnimationFrame(tick);
       });
-      once.disconnect();
+      io.disconnect();
     }
   },{ threshold:.3 });
-  once.observe(band);
+  io.observe(band);
 })();
