@@ -34,34 +34,30 @@ const revealObserver = new IntersectionObserver((entries)=>{
 },{ threshold: .15 });
 revealTargets.forEach(el=>revealObserver.observe(el));
 
-/* Hero word reveal */
+/* HERO WORD REVEAL (preserves spaces) */
 (function(){
-  const container = document.querySelector('.reveal-words');
-  if(!container) return;
-  const text = container.textContent.trim();
-  if(!text) return;
-  const words = text.split(' ');
-  container.textContent = '';
-  words.forEach((wd, i)=>{
+  const el = document.querySelector('.reveal-words');
+  if(!el) return;
+  const tokens = el.textContent.split(/(\s+)/);
+  el.textContent = '';
+  tokens.forEach(tok=>{
     const span = document.createElement('span');
     span.className = 'w';
-    span.textContent = i < words.length - 1 ? `${wd} ` : wd;
-    container.appendChild(span);
+    span.textContent = tok;
+    el.appendChild(span);
   });
-  const parts = container.querySelectorAll('.w');
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const parts = el.querySelectorAll('.w');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){
     parts.forEach(p=>p.classList.add('on'));
     return;
   }
   const start = performance.now();
-  const durEach = 55;
+  const step = 45;
   function tick(t){
-    const elapsed = t - start;
-    const idx = Math.floor(elapsed / durEach);
-    for(let i=0; i<=idx && i<parts.length; i++){
-      parts[i].classList.add('on');
-    }
-    if(idx < parts.length) requestAnimationFrame(tick);
+    const index = Math.floor((t - start) / step);
+    parts.forEach((p, i)=>{ if(i <= index) p.classList.add('on'); });
+    if(index < parts.length) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
 })();
@@ -140,24 +136,43 @@ const io = new IntersectionObserver((entries)=>{
 },{ threshold:[0,0.5,1]});
 videos.forEach(v=>io.observe(v));
 
-/* Year + basic count-up (optional, light) */
+/* Year + animated stats */
 const yearEl = document.getElementById('year');
 if(yearEl){
   yearEl.textContent = new Date().getFullYear();
 }
 
-document.querySelectorAll('.stat-value').forEach(el=>{
-  const target = parseInt(el.dataset.target || el.textContent, 10);
-  if(!Number.isFinite(target)) return;
-  const isPlus = el.textContent.includes('+');
-  const start = 0;
-  const dur = 900;
-  const t0 = performance.now();
-  function tick(t){
-    const p = Math.min(1, (t - t0) / dur);
-    const val = Math.floor(start + (target - start) * p);
-    el.textContent = isPlus ? `${val}+` : `${val}`;
-    if(p < 1) requestAnimationFrame(tick);
+const statEls = document.querySelectorAll('#stats .stat-value');
+const animateStats = ()=>{
+  statEls.forEach(el=>{
+    const target = parseInt(el.dataset.target || el.textContent, 10);
+    if(!Number.isFinite(target)) return;
+    const isPlus = el.textContent.trim().endsWith('+');
+    const start = 0;
+    const dur = 900;
+    const begin = performance.now();
+    function step(t){
+      const p = Math.min(1, (t - begin) / dur);
+      const val = Math.floor(start + (target - start) * p);
+      el.textContent = isPlus ? `${val}+` : `${val}`;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+};
+if(statEls.length){
+  const statsSection = document.getElementById('stats');
+  if(statsSection){
+    const statsObserver = new IntersectionObserver((entries, observer)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          animateStats();
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.3});
+    statsObserver.observe(statsSection);
+  } else {
+    animateStats();
   }
-  requestAnimationFrame(tick);
-});
+}

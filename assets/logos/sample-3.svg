@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="40" viewBox="0 0 140 40" fill="none">
+  <circle cx="20" cy="20" r="12" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+  <path d="M20 12v16M12 20h16" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" />
+  <text x="60" y="24" font-family="'Space Grotesk', sans-serif" font-size="15" fill="white" fill-opacity="0.8">NORTHBOUND</text>
+</svg>
