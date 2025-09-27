@@ -238,30 +238,6 @@ function onPlayerReady(event) {
   event.target.mute();
 }
 
-// Click-to-unmute functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const videoContainers = document.querySelectorAll('.video-container');
-  
-  videoContainers.forEach(container => {
-    container.addEventListener('click', function() {
-      // Find the iframe in this container
-      const iframe = this.querySelector('iframe');
-      if (!iframe) return;
-      
-      // Get the video ID from the iframe src
-      const videoId = iframe.src.match(/embed\/([^?]+)/)[1];
-      
-      // Find the corresponding player
-      const player = players[videoId];
-      if (player && player.unMute) {
-        player.unMute();
-        player.setVolume(50); // Set to 50% volume
-        this.classList.add('unmuted');
-      }
-    });
-  });
-});
-
 // Load YouTube API
 const tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
