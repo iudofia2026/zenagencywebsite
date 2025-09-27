@@ -233,8 +233,9 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-  // Set initial volume to 50%
-  event.target.setVolume(50);
+  // Set initial volume to 0 (muted)
+  event.target.setVolume(0);
+  event.target.mute();
 }
 
 // Volume control event listeners
@@ -253,6 +254,28 @@ document.addEventListener('DOMContentLoaded', function() {
           player.setVolume(volume);
         }
       });
+    });
+  });
+
+  // Click-to-unmute functionality
+  const videoContainers = document.querySelectorAll('.video-container');
+  
+  videoContainers.forEach(container => {
+    container.addEventListener('click', function() {
+      // Find the iframe in this container
+      const iframe = this.querySelector('iframe');
+      if (!iframe) return;
+      
+      // Get the video ID from the iframe src
+      const videoId = iframe.src.match(/embed\/([^?]+)/)[1];
+      
+      // Find the corresponding player
+      const player = players[videoId];
+      if (player && player.unMute) {
+        player.unMute();
+        player.setVolume(50); // Set to 50% volume
+        this.classList.add('unmuted');
+      }
     });
   });
 });

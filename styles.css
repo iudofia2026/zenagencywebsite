@@ -604,3 +604,52 @@ footer nav a:hover::after{transform:scaleX(1)}
   pointer-events: none;
   background: transparent;
 }
+
+/* Completely hide YouTube headers and branding */
+.youtube-embed {
+  position: relative;
+}
+
+.youtube-embed iframe {
+  position: absolute;
+  top: -50px; /* Hide YouTube header */
+  left: 0;
+  width: 100%;
+  height: calc(100% + 50px); /* Extend to cover hidden header */
+  border: none;
+  outline: none;
+}
+
+/* Hide YouTube player controls completely */
+.video-container {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Click-to-unmute overlay */
+.video-container::after {
+  content: '🔊 Click to unmute';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.video-container:hover::after {
+  opacity: 1;
+}
+
+/* Hide overlay when video is unmuted */
+.video-container.unmuted::after {
+  display: none;
+}
