@@ -594,3 +594,48 @@ footer nav a:hover::after{transform:scaleX(1)}
   background: transparent;
 }
 
+/* Completely hide YouTube title and profile picture overlays */
+.video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* Hide YouTube player overlays */
+.video-container iframe {
+  pointer-events: auto;
+}
+
+/* Click-to-unmute overlay */
+.video-container .unmute-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.video-container:hover .unmute-overlay {
+  opacity: 1;
+}
+
+/* Hide overlay when video is unmuted */
+.video-container.unmuted .unmute-overlay {
+  display: none;
+}
+
