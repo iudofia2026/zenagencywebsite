@@ -2,56 +2,13 @@
   publish = "."
   command = "echo 'No build step required for static site'"
 
-[build.environment]
-  NODE_VERSION = "18"
-
-# Increase build timeout for large files
-[build.processing]
-  skip_processing = false
-
-# Headers for video files - optimized for streaming
-[[headers]]
-  for = "/assets/videos/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    Content-Type = "video/mp4"
-    Accept-Ranges = "bytes"
-    X-Content-Type-Options = "nosniff"
-
-# Headers for poster images
-[[headers]]
-  for = "/assets/posters/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    Content-Type = "image/jpeg"
-    X-Content-Type-Options = "nosniff"
-
-# Redirects for better video serving
-[[redirects]]
-  from = "/videos/*"
-  to = "/assets/videos/:splat"
-  status = 301
-
-# Optimize video loading for all MP4 files
-[[headers]]
-  for = "/*.mp4"
-  [headers.values]
-    Accept-Ranges = "bytes"
-    Cache-Control = "public, max-age=31536000"
-    Content-Type = "video/mp4"
-
-# Enable compression for text files only (not videos)
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Content-Encoding = "gzip"
-
+# Basic headers for CSS and JS files
 [[headers]]
   for = "/*.css"
   [headers.values]
-    Content-Encoding = "gzip"
+    Content-Type = "text/css"
 
 [[headers]]
   for = "/*.js"
   [headers.values]
-    Content-Encoding = "gzip"
+    Content-Type = "application/javascript"
