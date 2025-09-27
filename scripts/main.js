@@ -238,48 +238,6 @@ function onPlayerReady(event) {
   event.target.mute();
 }
 
-// Volume control event listeners
-document.addEventListener('DOMContentLoaded', function() {
-  const volumeSliders = document.querySelectorAll('.volume-slider');
-  
-  volumeSliders.forEach(slider => {
-    slider.addEventListener('input', function() {
-      const volume = this.value;
-      const videoId = this.dataset.video;
-      
-      // Find the corresponding player and set volume
-      // This is a simplified approach - you might need to map video IDs
-      Object.values(players).forEach(player => {
-        if (player && player.setVolume) {
-          player.setVolume(volume);
-        }
-      });
-    });
-  });
-
-  // Click-to-unmute functionality
-  const videoContainers = document.querySelectorAll('.video-container');
-  
-  videoContainers.forEach(container => {
-    container.addEventListener('click', function() {
-      // Find the iframe in this container
-      const iframe = this.querySelector('iframe');
-      if (!iframe) return;
-      
-      // Get the video ID from the iframe src
-      const videoId = iframe.src.match(/embed\/([^?]+)/)[1];
-      
-      // Find the corresponding player
-      const player = players[videoId];
-      if (player && player.unMute) {
-        player.unMute();
-        player.setVolume(50); // Set to 50% volume
-        this.classList.add('unmuted');
-      }
-    });
-  });
-});
-
 // Load YouTube API
 const tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
