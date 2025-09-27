@@ -571,3 +571,26 @@ footer nav a:hover::after{transform:scaleX(1)}
   position: relative;
 }
 
+/* Hide YouTube headers on hover */
+.video-container:hover .youtube-embed iframe {
+  top: -50px; /* Keep header hidden on hover */
+}
+
+/* Additional YouTube branding hiding */
+.video-container iframe {
+  pointer-events: auto;
+}
+
+/* Hide any YouTube overlay elements that appear on hover */
+.video-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: transparent;
+}
+
