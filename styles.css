@@ -566,7 +566,7 @@ footer nav a:hover::after{transform:scaleX(1)}
   border: none;
 }
 
-/* Hide YouTube branding */
+/* Hide YouTube branding completely */
 .youtube-embed::after {
   content: '';
   position: absolute;
@@ -575,4 +575,32 @@ footer nav a:hover::after{transform:scaleX(1)}
   right: 0;
   bottom: 0;
   pointer-events: none;
+}
+
+/* Hide YouTube logo and branding */
+.youtube-embed iframe {
+  border: none;
+}
+
+/* Additional YouTube branding hiding */
+.video-container {
+  overflow: hidden;
+}
+
+.video-container iframe {
+  border: none;
+  outline: none;
+}
+
+/* Hide any YouTube overlay elements */
+.video-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: transparent;
 }
