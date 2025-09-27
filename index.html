@@ -38,13 +38,58 @@
 
         <div class="hero-montage reveal delay-3">
           <div class="tile t1">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/hero-1.jpg" data-src="assets/videos/hero-1.mp4"></video>
+            <div class="video-container">
+              <iframe 
+                class="reel v9x16 youtube-embed"
+                src="https://www.youtube.com/embed/4hzThQxIKIo?autoplay=1&mute=0&loop=1&playlist=4hzThQxIKIo&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+                frameborder="0" 
+                allow="autoplay; encrypted-media; fullscreen" 
+                allowfullscreen>
+              </iframe>
+              
+              <div class="custom-controls">
+                <div class="volume-control">
+                  <span class="volume-icon">🔊</span>
+                  <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="hero-1">
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tile t2">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/hero-2.jpg" data-src="assets/videos/hero-2.mp4"></video>
+            <div class="video-container">
+              <iframe 
+                class="reel v9x16 youtube-embed"
+                src="https://www.youtube.com/embed/07K9PBhDXpE?autoplay=1&mute=0&loop=1&playlist=07K9PBhDXpE&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+                frameborder="0" 
+                allow="autoplay; encrypted-media; fullscreen" 
+                allowfullscreen>
+              </iframe>
+              
+              <div class="custom-controls">
+                <div class="volume-control">
+                  <span class="volume-icon">🔊</span>
+                  <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="hero-2">
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tile t3">
-            <video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/hero-3.jpg" data-src="assets/videos/hero-3.mp4"></video>
+            <div class="video-container">
+              <iframe 
+                class="reel v9x16 youtube-embed"
+                src="https://www.youtube.com/embed/Vn8S24xvopQ?autoplay=1&mute=0&loop=1&playlist=Vn8S24xvopQ&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+                frameborder="0" 
+                allow="autoplay; encrypted-media; fullscreen" 
+                allowfullscreen>
+              </iframe>
+              
+              <div class="custom-controls">
+                <div class="volume-control">
+                  <span class="volume-icon">🔊</span>
+                  <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="hero-3">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -73,21 +118,161 @@
   <div class="container">
     <p class="kicker">Showcase</p>
 
-    <!-- Compact, staggered grid -->
+    <!-- Compact, staggered grid with proper aspect ratios -->
     <div class="reels-grid compact reveal-stagger" id="reelsGrid" aria-live="polite">
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-1.jpg" data-src="assets/videos/reel-1.mp4"></video></div>
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-2.jpg" data-src="assets/videos/reel-2.mp4"></video></div>
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-3.jpg" data-src="assets/videos/reel-3.mp4"></video></div>
+      <!-- Vertical videos (9:16) in vertical blocks -->
+      <div class="vwrap-plain">
+        <div class="video-container">
+          <iframe 
+            class="reel v9x16 youtube-embed"
+            src="https://www.youtube.com/embed/UPLOpIZXbv4?autoplay=1&mute=0&loop=1&playlist=UPLOpIZXbv4&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+            frameborder="0" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            allowfullscreen>
+          </iframe>
+          
+          <div class="custom-controls">
+            <div class="volume-control">
+              <span class="volume-icon">🔊</span>
+              <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="reel-1">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vwrap-plain">
+        <div class="video-container">
+          <iframe 
+            class="reel v9x16 youtube-embed"
+            src="https://www.youtube.com/embed/j18gYM1C2bc?autoplay=1&mute=0&loop=1&playlist=j18gYM1C2bc&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+            frameborder="0" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            allowfullscreen>
+          </iframe>
+          
+          <div class="custom-controls">
+            <div class="volume-control">
+              <span class="volume-icon">🔊</span>
+              <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="reel-2">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vwrap-plain">
+        <div class="video-container">
+          <iframe 
+            class="reel v9x16 youtube-embed"
+            src="https://www.youtube.com/embed/JynlxG2D-fc?autoplay=1&mute=0&loop=1&playlist=JynlxG2D-fc&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+            frameborder="0" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            allowfullscreen>
+          </iframe>
+          
+          <div class="custom-controls">
+            <div class="volume-control">
+              <span class="volume-icon">🔊</span>
+              <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="reel-3">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Horizontal videos (16:9) in horizontal blocks -->
       <div class="vwrap-longform span-2">
-        <video class="reel h16x9" controls muted playsinline loop preload="none" poster="assets/posters/intro-podcast.jpg" data-src="assets/videos/INTRO PODCAST.mp4"></video>
+        <div class="video-container">
+          <iframe 
+            class="reel h16x9 youtube-embed"
+            src="https://www.youtube.com/embed/eoZq-5DaP28?autoplay=1&mute=0&loop=1&playlist=eoZq-5DaP28&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+            frameborder="0" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            allowfullscreen>
+          </iframe>
+          
+          <div class="custom-controls">
+            <div class="volume-control">
+              <span class="volume-icon">🔊</span>
+              <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="podcast">
+            </div>
+          </div>
+        </div>
         <p class="vcaption">Podcast Intro</p>
       </div>
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-4.jpg" data-src="assets/videos/reel-4.mp4"></video></div>
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-5.jpg" data-src="assets/videos/reel-5.mp4"></video></div>
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-6.jpg" data-src="assets/videos/reel-6.mp4"></video></div>
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-7.jpg" data-src="assets/videos/reel-7.mp4"></video></div>
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-8.jpg" data-src="assets/videos/reel-8.mp4"></video></div>
-      <div class="vwrap-plain"><video class="reel v9x16" controls muted playsinline loop preload="none" poster="assets/posters/reel-9.jpg" data-src="assets/videos/reel-9.mp4"></video></div>
+      
+      <!-- More vertical videos -->
+      <div class="vwrap-plain">
+        <div class="video-container">
+          <iframe 
+            class="reel v9x16 youtube-embed"
+            src="https://www.youtube.com/embed/4hzThQxIKIo?autoplay=1&mute=0&loop=1&playlist=4hzThQxIKIo&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+            frameborder="0" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            allowfullscreen>
+          </iframe>
+          
+          <div class="custom-controls">
+            <div class="volume-control">
+              <span class="volume-icon">🔊</span>
+              <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="reel-4">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vwrap-plain">
+        <div class="video-container">
+          <iframe 
+            class="reel v9x16 youtube-embed"
+            src="https://www.youtube.com/embed/07K9PBhDXpE?autoplay=1&mute=0&loop=1&playlist=07K9PBhDXpE&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+            frameborder="0" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            allowfullscreen>
+          </iframe>
+          
+          <div class="custom-controls">
+            <div class="volume-control">
+              <span class="volume-icon">🔊</span>
+              <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="reel-5">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vwrap-plain">
+        <div class="video-container">
+          <iframe 
+            class="reel v9x16 youtube-embed"
+            src="https://www.youtube.com/embed/Vn8S24xvopQ?autoplay=1&mute=0&loop=1&playlist=Vn8S24xvopQ&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+            frameborder="0" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            allowfullscreen>
+          </iframe>
+          
+          <div class="custom-controls">
+            <div class="volume-control">
+              <span class="volume-icon">🔊</span>
+              <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="reel-6">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Another horizontal video -->
+      <div class="vwrap-longform span-2">
+        <div class="video-container">
+          <iframe 
+            class="reel h16x9 youtube-embed"
+            src="https://www.youtube.com/embed/A-cemD5me6Q?autoplay=1&mute=0&loop=1&playlist=A-cemD5me6Q&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&cc_load_policy=0&enablejsapi=1"
+            frameborder="0" 
+            allow="autoplay; encrypted-media; fullscreen" 
+            allowfullscreen>
+          </iframe>
+          
+          <div class="custom-controls">
+            <div class="volume-control">
+              <span class="volume-icon">🔊</span>
+              <input type="range" min="0" max="100" value="50" class="volume-slider" data-video="reel-7">
+            </div>
+          </div>
+        </div>
+        <p class="vcaption">YouTube Video</p>
+      </div>
     </div>
   </div>
 </section>

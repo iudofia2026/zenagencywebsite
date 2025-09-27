@@ -215,3 +215,50 @@ if(yearEl){
   },{ threshold:.3 });
   io.observe(band);
 })();
+
+/* YouTube API for volume control */
+let players = {};
+
+function onYouTubeIframeAPIReady() {
+  // Initialize all video players
+  const iframes = document.querySelectorAll('.youtube-embed');
+  iframes.forEach((iframe, index) => {
+    const videoId = iframe.src.match(/embed\/([^?]+)/)[1];
+    players[videoId] = new YT.Player(iframe, {
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  });
+}
+
+function onPlayerReady(event) {
+  // Set initial volume to 50%
+  event.target.setVolume(50);
+}
+
+// Volume control event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  const volumeSliders = document.querySelectorAll('.volume-slider');
+  
+  volumeSliders.forEach(slider => {
+    slider.addEventListener('input', function() {
+      const volume = this.value;
+      const videoId = this.dataset.video;
+      
+      // Find the corresponding player and set volume
+      // This is a simplified approach - you might need to map video IDs
+      Object.values(players).forEach(player => {
+        if (player && player.setVolume) {
+          player.setVolume(volume);
+        }
+      });
+    });
+  });
+});
+
+// Load YouTube API
+const tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
